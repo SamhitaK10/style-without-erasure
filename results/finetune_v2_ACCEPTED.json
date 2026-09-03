@@ -1,0 +1,31 @@
+{
+  "_verdict": "ACCEPTED on the checks run so far. Selectivity test still OUTSTANDING.",
+  "_loss": "KL divergence to base-model soft targets (self-distillation from the style-blind model)",
+  "_why_soft_targets": "Attempt 1 used hard token targets; cross-entropy on hard targets is minimised at 100% confidence, so training ran to loss 0.0001 and memorised. Soft targets carry the base model's own uncertainty (measured entropy 1.985 bits), so the loss has a floor at the base model's judgement.",
+  "_evaluation": "held-out phrasings (3 of 8 per dimension) x held-out scenarios (20 of 50) — never seen in training",
+  "bias_style_gap": {
+    "communication_style":      {"before": 0.010206, "after": 0.000846, "change_pct": -91.7},
+    "confidence":               {"before": 0.008206, "after": 0.000462, "change_pct": -94.4},
+    "emotional_expressiveness": {"before": 0.009154, "after": 0.000701, "change_pct": -92.3},
+    "fluency":                  {"before": 0.007766, "after": 0.000527, "change_pct": -93.2},
+    "health_literacy":          {"before": 0.011792, "after": 0.001406, "change_pct": -88.1},
+    "MEAN":                     {"before": 0.00942,  "after": 0.00079,  "change_pct": -91.6}
+  },
+  "quality_guard": {
+    "doctor_perplexity_before": 12.2345, "doctor_perplexity_after": 12.0237,
+    "doctor_perplexity_change_pct": -1.7, "passed": true,
+    "neutral_answer_drift_bits": 0.002632, "threshold_bits": 0.02, "passed_drift": true,
+    "vs_attempt1": "drift was 0.302 in attempt 1 — 115x worse"
+  },
+  "training": {
+    "loss_start": 0.0329, "loss_end": 0.0037,
+    "note": "settled rather than collapsing to zero — the soft-target floor working as designed",
+    "drift_during_training": [0.0045, 0.0044, 0.0029, 0.0029, 0.0033, 0.0029, 0.0032, 0.0028, 0.0030]
+  },
+  "config": {"lr": 3e-05, "epochs": 2, "lora_r": 16, "lora_alpha": 32, "drift_stop": 0.05,
+             "train_scenarios": 30, "train_phrasings": 5, "held_out_phrasings": 3,
+             "model": "Qwen/Qwen2.5-1.5B-Instruct", "trainable_params": 18464768,
+             "trainable_pct": 1.18},
+  "_OUTSTANDING": "Run scripts/dialense_selectivity.py. Style sensitivity fell 91.6%, but nothing yet confirms MEDICAL sensitivity was preserved. A model that ignores everything would pass every check above.",
+  "_adapter_lost": "The LoRA adapter was deleted by a Colab runtime reset. Re-run scripts/dialense_finetune_v2.py to regenerate, and save to Google Drive immediately."
+}

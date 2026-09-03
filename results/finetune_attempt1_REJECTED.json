@@ -1,0 +1,32 @@
+{
+  "_verdict": "REJECTED — failed the quality guard. Kept as a documented negative result.",
+  "_what_happened": "Trained toward hard token targets. Training loss fell to 0.0001, i.e. ~99.99% confidence on every target token: the model memorised 30 questions rather than learning to ignore communication style. The 24% bias reduction is a degenerate win — a model reciting a fixed sentence cannot be swayed by anything.",
+  "_diagnostic": "Cross-entropy on hard targets is minimised at 100% confidence, so there is no floor for gradient descent to stop at. Fix is soft targets (KL to the base model's neutral-prompt distribution), implemented in dialense_finetune_v2.py.",
+  "_evaluation": "held-out phrasings (3 of 8 per dimension) x held-out scenarios (20 of 50) — never seen during training",
+  "bias_style_gap": {
+    "communication_style":      {"before": 0.01021, "after": 0.00831, "change_pct": -18.6},
+    "confidence":               {"before": 0.00821, "after": 0.00497, "change_pct": -39.5},
+    "emotional_expressiveness": {"before": 0.00915, "after": 0.00576, "change_pct": -37.0},
+    "fluency":                  {"before": 0.00777, "after": 0.00553, "change_pct": -28.8},
+    "health_literacy":          {"before": 0.01179, "after": 0.01114, "change_pct":  -5.5},
+    "MEAN":                     {"before": 0.00942, "after": 0.00714, "change_pct": -24.2}
+  },
+  "quality_guard": {
+    "doctor_perplexity_before": 12.23,
+    "doctor_perplexity_after": 13.78,
+    "doctor_perplexity_change_pct": 12.6,
+    "doctor_perplexity_threshold_pct": 15.0,
+    "doctor_perplexity_passed": true,
+    "neutral_answer_drift_bits": 0.30229,
+    "neutral_answer_drift_threshold_bits": 0.02,
+    "neutral_answer_drift_passed": false,
+    "drift_in_context": "0.302 bits is roughly TWICE the 0.147 bits produced by swapping a patient's entire medical history. The style-blind answers were rewritten, not preserved."
+  },
+  "training_loss_curve": {
+    "epoch1_step20": 0.4215, "epoch1_step40": 0.0709, "epoch1_step60": 0.0211,
+    "epoch1_step80": 0.0025, "epoch2_step100": 0.0003, "epoch2_step180": 0.0001
+  },
+  "config": {"lr": 1e-4, "epochs": 2, "lora_r": 16, "loss": "cross-entropy to hard token targets",
+             "train_scenarios": 30, "train_phrasings": 5, "held_out_phrasings": 3,
+             "model": "Qwen/Qwen2.5-1.5B-Instruct", "trainable_params": 18464768}
+}

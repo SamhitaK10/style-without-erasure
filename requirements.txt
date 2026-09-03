@@ -1,0 +1,67 @@
+# Style Without Erasure — Python dependencies
+#
+# Python 3.10 or newer.
+#
+# These are the packages the experiment and analysis code actually imports.
+# Nothing is listed that the code does not use: there is no `datasets`,
+# `pandas` or `tqdm` dependency anywhere in this project.
+#
+# --------------------------------------------------------------------------
+# ON VERSION PINS
+#
+# The reported runs were performed in Google Colab, which supplies its own
+# preinstalled stack; the scripts call `pip install -q transformers accelerate
+# peft` without version constraints, and no environment snapshot (lockfile,
+# `pip freeze`, conda export) was saved with the results. Exact versions of
+# torch, transformers, accelerate, numpy, scipy, scikit-learn and matplotlib
+# for the original runs are therefore NOT RECOVERABLE from this repository.
+#
+# What IS recoverable, and is the reason for the peft floor below:
+#
+#   * The scripts carry a compatibility shim for a clash between `peft` and
+#     `torchao`. Its header records the environment it was written against:
+#     "verified against peft 0.20.0", with Colab shipping torchao 0.10.0 while
+#     peft required torchao >= 0.16.0.
+#   * `experiments/06_selfdistill.py` references peft 0.14.0 only as a
+#     *recovery path*: if `get_peft_model` still raises an ImportError
+#     mentioning torchao, it installs 0.14.0 and exits, asking for a restart.
+#     That is a fallback, not the version the reported run used.
+#
+# The constraints below are therefore compatibility floors chosen to match that
+# evidence, not a reconstruction of the original environment. Results produced
+# under different versions may differ in the last decimal places.
+# --------------------------------------------------------------------------
+
+# Core modelling stack
+torch>=2.1
+transformers>=4.44
+accelerate>=0.30
+
+# LoRA adapters. The torchao shim in the experiment scripts was written and
+# verified against peft 0.20.0; older releases probe for torchao differently.
+peft>=0.14
+
+# Numerics, statistics and probing
+numpy>=1.24
+scipy>=1.10           # Wilcoxon signed-rank, exact sign test, Spearman
+scikit-learn>=1.3     # LogisticRegression, roc_auc_score, StandardScaler
+
+# Figures
+matplotlib>=3.7
+
+# --------------------------------------------------------------------------
+# HARDWARE
+#
+#   * Every GPU experiment was run on a single NVIDIA T4 (Google Colab).
+#   * `experiments/06_selfdistill.py` and `07_selfdistill_seeds.py` require at
+#     least 5 GiB of free device memory and abort otherwise. Peak allocation
+#     was not recorded for the reported runs; both scripts now report it.
+#   * `experiments/13_patching_0.5b.py` runs on CPU.
+#   * No specific CUDA toolkit version is required by the code; install the
+#     torch build that matches your driver, following pytorch.org.
+#   * The analysis scripts (`analysis/`) need no GPU.
+#
+# REBUILDING THE PAPER PDF additionally needs system tools pip cannot install:
+#   pandoc
+#   xelatex, with the TeX Gyre font family (TeX Gyre Termes, TeX Gyre Heros)
+# --------------------------------------------------------------------------

@@ -1,0 +1,88 @@
+{
+  "_measure": "style-minus-placebo restoration, activation patching at the final prompt position, 1.5B base model",
+  "_power": "20 held-out scenarios x 5 phrasings x 3 dimensions (100 items each) vs 3 placebo pairs x 20 scenarios (60 items); bootstrap CIs, Benjamini-Hochberg across 28 layers",
+  "_reporting_rule": "A layer is reported only if BH q<0.05 AND |difference| >= 0.03. Layers 20-26 pass significance with effects of 0.005-0.041 because restoration there sits near 1.0 with almost no variance; they are statistically real and practically empty. Do not cite them.",
+  "_superseded": "An earlier 0.5B run appeared to show a sharp transition at layer 14. It did not replicate at 1.5B and was an artifact of the smaller model. Report the failed replication.",
+  "meaningful_positive_layers": {
+    "fluency": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "confidence": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "health_literacy": []
+  },
+  "peaks": {
+    "fluency": {
+      "layer": 4,
+      "diff": 0.065,
+      "ci": [
+        0.049,
+        0.081
+      ]
+    },
+    "confidence": {
+      "layer": 5,
+      "diff": 0.074,
+      "ci": [
+        0.056,
+        0.092
+      ]
+    },
+    "health_literacy": {
+      "layer": 4,
+      "diff": 0.027,
+      "ci": [
+        0.011,
+        0.045
+      ],
+      "note": "below the 0.03 magnitude floor"
+    }
+  },
+  "meaningful_negative_region": {
+    "layers": "10-19",
+    "health_literacy_min": {
+      "layer": 17,
+      "diff": -0.355,
+      "ci": [
+        -0.419,
+        -0.29
+      ]
+    },
+    "confidence_min": {
+      "layer": 17,
+      "diff": -0.121,
+      "ci": [
+        -0.171,
+        -0.069
+      ]
+    },
+    "fluency_min": {
+      "layer": 15,
+      "diff": -0.096,
+      "ci": [
+        -0.144,
+        -0.047
+      ]
+    },
+    "interpretation": "Patching the final position mid-network restores the style effect LESS than it restores the placebo effect. The natural reading is that communication-style information is not concentrated at the final token but remains distributed across the cue tokens, so overwriting one position cannot carry it. Single-position patching therefore understates style. This is a finding about the method's reach as much as about the model."
+  },
+  "claim": "Style-specific restoration exceeds a length- and embedding-distance-matched irrelevant contrast at layers 3-8 (peak +0.07, BH-corrected, CI excluding zero) and falls markedly below it at layers 10-19. No single site was identified.",
+  "do_not_claim": [
+    "style enters at layer 14",
+    "style enters at layer 20",
+    "fine-tuning flattened the patching curve",
+    "a single localisation site was found"
+  ],
+  "next_method": "Residual-stream patching at the cue token positions rather than the final position; or attribution patching, which does not require choosing a position."
+}

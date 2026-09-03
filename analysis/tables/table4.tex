@@ -1,0 +1,23 @@
+\begin{table*}[t]\centering\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}lrrrrrrrr@{}}
+\toprule
+& & & & \multicolumn{5}{c}{Per-dimension reduction (\%)} \\
+\cmidrule(l){5-9}
+Run & Reduc. & Perplex. & Drift (bits) & Health lit. & Confid. & Comm. & Emot. & Fluency \\
+\midrule
+original (unseeded) & 91.6\% & 12.02 & 0.00263 & 88.1 & 94.4 & 91.7 & 92.3 & 93.2 \\
+seed 1 & 90.9\% & 12.01 & 0.00262 & 87.4 & 94.0 & 90.2 & 92.0 & 92.9 \\
+seed 2 & 91.7\% & 12.08 & 0.00263 & 88.3 & 94.5 & 91.5 & 92.4 & 93.5 \\
+seed 3 & 91.8\% & 12.01 & 0.00234 & 88.4 & 94.6 & 91.6 & 92.7 & 93.4 \\
+\midrule
+\textbf{3 seeds} & \textbf{91.5\% mean} & \multicolumn{2}{l}{range 90.9--91.8\%} & \multicolumn{5}{l}{every dimension's range $<1.5$ points} \\
+\bottomrule
+\end{tabular}
+\caption{\textbf{Self-distillation across independent runs.} Evaluated on held-out phrasings crossed with
+held-out scenarios. Pre-intervention perplexity is 12.23 in every run. Seeds vary adapter initialisation, data
+order and dropout only; the train/test split is fixed across runs. We report mean and range and decline to
+construct a confidence interval at $n=3$. Selectivity (single run): clinical sensitivity $+2.7\%$, placebo
+sensitivity $-75.4\%$, style influence relative to the clinical effect $5.22\% \to 0.43\%$ ($12.2\times$).}
+\label{tab:seeds}
+\end{table*}

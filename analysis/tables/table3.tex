@@ -1,0 +1,21 @@
+\begin{table}[t]\centering\small
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+Dimension & Family & Flat pool & Change \\
+\midrule
+Health literacy & 7.4$\times$ & 4.9$\times$ & -34\% \\
+Confidence & 5.0$\times$ & 3.3$\times$ & -34\% \\
+Comm.\ style & 4.9$\times$ & 4.7$\times$ & -4\% \\
+Emotional expr. & 4.7$\times$ & 4.8$\times$ & +2\% \\
+Fluency & 3.6$\times$ & 2.5$\times$ & -31\% \\
+\midrule
+\textbf{Median} & \textbf{4.9$\times$} & \textbf{4.7$\times$} & \textbf{-4\%} \\
+\bottomrule
+\end{tabular}
+\caption{\textbf{Placebo-construction robustness.} Both builders match the placebo pair to the style pair on
+exact token length of each side and on cosine distance in input-embedding space; the family-constrained
+builder additionally requires both placebo sentences to come from one stem family. Every dimension stays
+positive under both (7--8 of 8 phrasings, all $p \le .0117$), but three of five fall by about a third.
+Direction is robust; magnitude is not.}
+\label{tab:placebo}
+\end{table}

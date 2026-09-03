@@ -1,0 +1,453 @@
+{
+  "model": {
+    "name": "Qwen/Qwen2.5-1.5B-Instruct",
+    "layers": 28,
+    "hidden": 1536,
+    "lora_trainable": 18464768,
+    "lora_pct": 1.18
+  },
+  "baseline": {
+    "unit": "phrasing",
+    "n_phrasings_per_dim": 8,
+    "n_scenarios": 20,
+    "wilcoxon_p": 0.0039,
+    "positives": "8/8",
+    "positive_control_bits": 0.1475,
+    "dims": {
+      "health_literacy": {
+        "d_style": 0.00604,
+        "d_placebo": 0.00082,
+        "ratio": 7.4
+      },
+      "confidence": {
+        "d_style": 0.00452,
+        "d_placebo": 0.0009,
+        "ratio": 5.0
+      },
+      "communication_style": {
+        "d_style": 0.00888,
+        "d_placebo": 0.00181,
+        "ratio": 4.9
+      },
+      "emotional_expressiveness": {
+        "d_style": 0.00543,
+        "d_placebo": 0.00115,
+        "ratio": 4.7
+      },
+      "fluency": {
+        "d_style": 0.00513,
+        "d_placebo": 0.00144,
+        "ratio": 3.6
+      }
+    },
+    "pct_of_positive_control_range": [
+      3.1,
+      6.0
+    ],
+    "independent_reimplementation_mean_abs_diff": 0.02
+  },
+  "cue_robustness": {
+    "unit": "dimension",
+    "n": 5,
+    "test": "exact sign test",
+    "arms": {
+      "descriptor": {
+        "positives": 5,
+        "p": 0.0312,
+        "median_ratio": 2.5,
+        "per_dim_pct_of_control": {
+          "communication_style": 9.5,
+          "fluency": 4.8,
+          "emotional_expressiveness": 3.4,
+          "health_literacy": 2.9,
+          "confidence": 2.7
+        },
+        "per_dim_ratio": {
+          "fluency": 1.1,
+          "health_literacy": 6.2,
+          "confidence": 2.5,
+          "emotional_expressiveness": 1.0,
+          "communication_style": 2.8
+        }
+      },
+      "mechanical_3rd": {
+        "positives": 5,
+        "p": 0.0312,
+        "median_ratio": 2.6,
+        "per_dim_pct_of_control": {
+          "communication_style": 26.7,
+          "health_literacy": 16.5,
+          "fluency": 15.1,
+          "emotional_expressiveness": 10.9,
+          "confidence": 10.1
+        },
+        "per_dim_ratio": {
+          "fluency": 2.6,
+          "health_literacy": 3.7,
+          "confidence": 1.9,
+          "emotional_expressiveness": 2.4,
+          "communication_style": 5.4
+        }
+      },
+      "raw_instruction": {
+        "positives": 5,
+        "p": 0.0312,
+        "median_ratio": 3.7,
+        "per_dim_pct_of_control": {
+          "communication_style": 75.3,
+          "fluency": 32.2,
+          "health_literacy": 21.6,
+          "emotional_expressiveness": 12.4,
+          "confidence": 9.9
+        },
+        "per_dim_ratio": {
+          "fluency": 4.8,
+          "health_literacy": 3.7,
+          "confidence": 2.5,
+          "emotional_expressiveness": 1.9,
+          "communication_style": 15.5
+        }
+      }
+    },
+    "contaminated_dims": [
+      "communication_style",
+      "fluency",
+      "health_literacy"
+    ],
+    "clean_dims": [
+      "emotional_expressiveness",
+      "confidence"
+    ],
+    "spearman_descriptor_vs_raw": {
+      "rho": 0.5,
+      "p": 0.39,
+      "n": 5
+    },
+    "note": "all three arms use ONE phrasing per dimension, matched to the raw arm's n=1; the 8-phrasing baseline ratios (3.6-7.4x) are in baseline.dims and are the primary numbers"
+  },
+  "placebo_robustness": {
+    "family": {
+      "fluency": 3.6,
+      "health_literacy": 7.4,
+      "confidence": 5.0,
+      "emotional_expressiveness": 4.7,
+      "communication_style": 4.9
+    },
+    "flat": {
+      "fluency": 2.5,
+      "health_literacy": 4.9,
+      "confidence": 3.3,
+      "emotional_expressiveness": 4.8,
+      "communication_style": 4.7
+    }
+  },
+  "positive_controls_bits": {
+    "baseline_set": 0.1475,
+    "held_out_set": 0.1992,
+    "training_set": 0.212,
+    "bare_facts_no_prefix": 0.2341
+  },
+  "intervention": {
+    "before_by_dim": {
+      "fluency": 0.00777,
+      "health_literacy": 0.01179,
+      "confidence": 0.00821,
+      "emotional_expressiveness": 0.00915,
+      "communication_style": 0.01021
+    },
+    "before_mean": 0.00942,
+    "runs": [
+      {
+        "label": "original (unseeded)",
+        "reduction_pct": 91.6,
+        "after_ppl": 12.0237,
+        "drift": 0.002632,
+        "per_dim": {
+          "fluency": 93.2,
+          "health_literacy": 88.077,
+          "confidence": 94.37,
+          "emotional_expressiveness": 92.3,
+          "communication_style": 91.7
+        }
+      },
+      {
+        "label": "seed 1",
+        "reduction_pct": 90.939,
+        "after_ppl": 12.009,
+        "drift": 0.002621,
+        "per_dim": {
+          "fluency": 92.891,
+          "health_literacy": 87.358,
+          "confidence": 93.982,
+          "emotional_expressiveness": 91.987,
+          "communication_style": 90.204
+        }
+      },
+      {
+        "label": "seed 2",
+        "reduction_pct": 91.721,
+        "after_ppl": 12.081,
+        "drift": 0.002632,
+        "per_dim": {
+          "fluency": 93.451,
+          "health_literacy": 88.286,
+          "confidence": 94.523,
+          "emotional_expressiveness": 92.417,
+          "communication_style": 91.496
+        }
+      },
+      {
+        "label": "seed 3",
+        "reduction_pct": 91.816,
+        "after_ppl": 12.013,
+        "drift": 0.002342,
+        "per_dim": {
+          "fluency": 93.392,
+          "health_literacy": 88.397,
+          "confidence": 94.571,
+          "emotional_expressiveness": 92.672,
+          "communication_style": 91.583
+        }
+      }
+    ],
+    "before_ppl": 12.2345,
+    "seeded_mean": 91.49,
+    "seeded_range": [
+      90.94,
+      91.82
+    ],
+    "seeded_spread": 0.88,
+    "selectivity": {
+      "clinical_change_pct": 2.7,
+      "placebo_reduction_pct": 75.4,
+      "style_influence_before_pct": 5.22,
+      "style_influence_after_pct": 0.43,
+      "fold_reduction": 12.2
+    }
+  },
+  "objective_comparison": {
+    "teacher_entropy": 1.985,
+    "rows": {
+      "base": {
+        "entropy": 2.024,
+        "top1": 0.604,
+        "p_gt_99": 0.127,
+        "style_gap": 0.00942,
+        "change_pct": null,
+        "drift": null
+      },
+      "soft_target": {
+        "entropy": 2.022,
+        "top1": 0.607,
+        "p_gt_99": 0.124,
+        "style_gap": 0.0008,
+        "change_pct": -91.6,
+        "drift": 0.0026
+      },
+      "hard_target": {
+        "entropy": 0.278,
+        "top1": 0.936,
+        "p_gt_99": 0.688,
+        "style_gap": 0.01123,
+        "change_pct": 19.2,
+        "drift": 0.3025
+      }
+    },
+    "hard_target_runs": [
+      {
+        "lr": 0.0001,
+        "style_gap_change_pct": -24.2,
+        "drift": 0.302
+      },
+      {
+        "lr": 3e-05,
+        "style_gap_change_pct": 19.2,
+        "drift": 0.3025
+      }
+    ],
+    "bare_facts_control_bits": 0.2341,
+    "hard_drift_multiple_of_control": 1.29,
+    "soft_drift_multiple_of_control": 0.011,
+    "hard_final_train_loss": 0.000322
+  },
+  "probe": {
+    "layers": [
+      2,
+      4,
+      6,
+      8,
+      12,
+      16,
+      20,
+      24,
+      27
+    ],
+    "n_units_style": 15,
+    "n_units_content": 18,
+    "unit_style": "(dimension, phrasing)",
+    "unit_content": "scenario",
+    "base_style_final": [
+      0.634,
+      0.673,
+      0.698,
+      0.732,
+      0.826,
+      0.851,
+      0.79,
+      0.85,
+      0.857
+    ],
+    "base_style_cue": [
+      0.711,
+      0.751,
+      0.76,
+      0.787,
+      0.884,
+      0.884,
+      0.876,
+      0.747,
+      0.76
+    ],
+    "delta_style_final": [
+      [
+        0.001,
+        -0.006,
+        0.008
+      ],
+      [
+        0.016,
+        -0.001,
+        0.035
+      ],
+      [
+        0.017,
+        -0.016,
+        0.056
+      ],
+      [
+        0.049,
+        0.005,
+        0.107
+      ],
+      [
+        0.008,
+        -0.041,
+        0.052
+      ],
+      [
+        0.013,
+        -0.037,
+        0.068
+      ],
+      [
+        -0.018,
+        -0.083,
+        0.033
+      ],
+      [
+        0.015,
+        -0.041,
+        0.068
+      ],
+      [
+        0.029,
+        -0.04,
+        0.097
+      ]
+    ],
+    "delta_style_cue": [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        -0.018,
+        0.022
+      ],
+      [
+        0.017,
+        0.0,
+        0.053
+      ],
+      [
+        -0.005,
+        -0.036,
+        0.018
+      ],
+      [
+        0.009,
+        -0.022,
+        0.044
+      ],
+      [
+        0.029,
+        -0.004,
+        0.076
+      ],
+      [
+        -0.066,
+        -0.12,
+        -0.018
+      ],
+      [
+        -0.009,
+        -0.062,
+        0.049
+      ]
+    ],
+    "perm_p_style": [
+      0.882,
+      0.064,
+      0.354,
+      0.064,
+      0.752,
+      0.54,
+      0.485,
+      0.657,
+      0.416
+    ],
+    "max_auc_base": 0.884,
+    "bound_auc": 0.107,
+    "layers_surviving": [],
+    "cue_minus_final_mean_through_L20": 0.064
+  },
+  "patching": {
+    "fluency_peak": {
+      "delta": 0.065,
+      "layer": 4
+    },
+    "confidence_peak": {
+      "delta": 0.074,
+      "layer": 5
+    },
+    "health_literacy_peak": {
+      "delta": 0.027,
+      "layer": 4,
+      "below_floor": true
+    },
+    "magnitude_floor": 0.03,
+    "negative_region": "layers 10-19, min -0.355 (health literacy, L17)",
+    "late_region": "layers 20-26 significant but trivial (0.005-0.041)",
+    "failed_replication": "0.5B layer-14 effect did not replicate at 1.5B"
+  },
+  "conversation_transfer": {
+    "n_pairs": 20,
+    "baseline_gap": -0.025,
+    "tuned_gap": -0.0375,
+    "absolute_friction_level": 1.55,
+    "narrowing": 0.0125,
+    "ci": [
+      -0.1125,
+      0.125
+    ],
+    "p": 0.684,
+    "informative": false
+  }
+}

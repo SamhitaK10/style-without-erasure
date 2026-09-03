@@ -1,0 +1,11 @@
+{
+  "_what": "Activation patching. Fraction of the style effect restored by transplanting the last-position hidden state from the fluent run into the struggling run, at each layer.",
+  "_model": "Qwen/Qwen2.5-0.5B-Instruct (24 layers) — CPU run. NOT the 1.5B used for the baseline.",
+  "_n": "8 scenarios x 3 phrasings = 24 items per dimension",
+  "_sanity_controls": {"patch_with_own_activation": 0.000, "patch_final_layer": 1.000, "both_passed": true},
+  "_finding": "Flat at ~0 through layer 11, then a single step at layer 14 carrying 85-90% of the effect, identical across all three dimensions tested.",
+  "_OUTSTANDING": "No placebo control yet. Late layers restore more by construction. Run archive/dialense_patching_v2.py to test whether layer 14 is style-specific or just this model's general commitment point. Also needs rerunning on 1.5B.",
+  "health_literacy": [-0.001,0.002,0.003,0.006,0.003,-0.009,-0.027,-0.034,-0.004,-0.005,-0.005,0.013,0.206,0.086,0.902,0.908,0.909,0.912,0.938,0.946,0.956,0.977,0.991,1.0],
+  "fluency":        [-0.001,0.008,0.010,0.002,-0.011,-0.005,0.006,0.013,0.033,0.046,0.079,0.088,0.164,0.040,0.819,0.903,0.900,0.933,0.957,0.962,0.981,0.988,0.993,1.0],
+  "confidence":     [0.005,-0.007,-0.001,0.004,0.005,-0.005,-0.015,-0.018,-0.038,-0.024,-0.027,0.130,0.194,0.190,0.854,0.910,0.911,0.925,0.959,0.963,0.978,0.985,0.996,1.0]
+}

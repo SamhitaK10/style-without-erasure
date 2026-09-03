@@ -1,0 +1,21 @@
+\begin{table*}[t]\centering\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+Model & Entropy (bits) & Top-1 $p$ & Frac.\ $p_{\max}>.99$ & Style gap (bits) & Change & Drift (bits) \\
+\midrule
+Base model & 2.024 & 0.604 & 0.127 & 0.00942 & --- & --- \\
+Self-distillation (soft targets) & 2.022 & 0.607 & 0.124 & 0.00080 & -91.6\% & 0.0026 \\
+SFT (hard targets) & 0.278 & 0.936 & 0.688 & 0.01123 & +19.2\% & 0.3025 \\
+\midrule
+\emph{Teacher (style-blind base)} & \emph{1.985} & --- & --- & --- & --- & --- \\
+\bottomrule
+\end{tabular}
+\caption{\textbf{Soft-target self-distillation vs.\ hard-target SFT}, identical hyperparameters apart from the
+loss. Forward KL is mass-covering, so the teacher's entropy is a floor for the soft-target student, which sits
+just above it. Hard-target drift is $1.29\times$ the form-matched positive control (0.2341 bits, measured on
+prompts with no style line); soft-target drift is $0.011\times$. Two hard-target runs at different learning
+rates moved the style gap $-24.2\%$ (lr $10^{-4}$) and $+19.2\%$ (lr $3\times10^{-5}$) while drift was 0.302
+and 0.3025: the distributional damage reproduces, the sensitivity metric does not reproduce in sign.}
+\label{tab:objective}
+\end{table*}

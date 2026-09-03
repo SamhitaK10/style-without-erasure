@@ -1,0 +1,77 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite the paper. If you use the clinical scenarios, you must also cite the MTS-Dialog corpus they are derived from (see the references below and docs/THIRD_PARTY.md)."
+title: "Style Without Erasure: Measuring and Removing Speaker-Style Sensitivity in Language Models"
+abstract: >-
+  A controlled protocol for measuring how a language model's output
+  distribution changes when speaker-style cues change while propositional
+  content is held byte-identical, and a distribution-preserving intervention
+  that removes the behavioural effect. Each style contrast is paired with a
+  placebo contrast matched on exact token length and on distance in the
+  model's input-embedding space, and every divergence is reported as a share
+  of a positive control that replaces the entire propositional content. The
+  intervention is self-distillation against a style-blind teacher: a frozen
+  base model reading the cue-free prompt supervises a LoRA-adapted student
+  reading the cue-present prompt. Behavioural sensitivity to speaker style
+  falls substantially while style information remains linearly decodable at
+  the resolution the design can measure. Experiments use a single model,
+  Qwen2.5-1.5B-Instruct.
+type: software
+authors:
+  - family-names: Kondareddy
+    given-names: Samhita
+license: MIT
+license-url: "https://github.com/SamhitaK10/style-without-erasure/blob/main/LICENSE"
+repository-code: "https://github.com/SamhitaK10/style-without-erasure"
+url: "https://github.com/SamhitaK10/style-without-erasure"
+keywords:
+  - large language models
+  - interpretability
+  - algorithmic fairness
+  - prompt sensitivity
+  - self-distillation
+  - knowledge distillation
+  - LoRA
+  - linear probing
+  - activation patching
+  - clinical natural language processing
+references:
+  - type: article
+    title: "An Empirical Study of Clinical Note Generation from Doctor-Patient Encounters"
+    authors:
+      - family-names: "Ben Abacha"
+        given-names: Asma
+      - family-names: Yim
+        given-names: Wen-wai
+      - family-names: Fan
+        given-names: Yadan
+      - family-names: Lin
+        given-names: Thomas
+    collection-title: "Proceedings of the 17th Conference of the European Chapter of the Association for Computational Linguistics"
+    conference:
+      name: "17th Conference of the European Chapter of the Association for Computational Linguistics"
+      city: Dubrovnik
+      country: HR
+    publisher:
+      name: "Association for Computational Linguistics"
+    month: 5
+    year: 2023
+    start: 2291
+    end: 2302
+    url: "https://aclanthology.org/2023.eacl-main.168"
+    license: CC-BY-4.0
+    notes: "MTS-Dialog. The clinical scenarios used here are CC BY 4.0 adaptations of records in this corpus; attribution is required."
+  - type: software
+    title: "DiaLense: A Framework for Auditing Interactional Bias in Clinical Conversational AI"
+    authors:
+      - family-names: Kondareddy
+        given-names: Samhita
+    license: MIT
+    repository-code: "https://github.com/SamhitaK10/DiaLense"
+    notes: "Defines the 50 clinical scenarios every experiment here reads."
+  - type: software
+    title: "Qwen2.5-1.5B-Instruct"
+    authors:
+      - name: "Qwen Team, Alibaba Cloud"
+    license: Apache-2.0
+    url: "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct"
+    notes: "The single model used in all reported experiments. Not redistributed here."

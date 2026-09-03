@@ -1,0 +1,20 @@
+\begin{table}[t]\centering\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lrrrrr@{}}
+\toprule
+Dimension & $D_{\mathrm{style}}$ & $D_{\mathrm{plac}}$ & Ratio & \%\,ctrl & $k$/8 \\
+\midrule
+Health literacy & 0.00604 & 0.00082 & 7.4$\times$ & 4.1\% & 8/8 \\
+Confidence & 0.00452 & 0.00090 & 5.0$\times$ & 3.1\% & 8/8 \\
+Comm.\ style & 0.00888 & 0.00181 & 4.9$\times$ & 6.0\% & 8/8 \\
+Emotional expr. & 0.00543 & 0.00115 & 4.7$\times$ & 3.7\% & 8/8 \\
+Fluency & 0.00513 & 0.00144 & 3.6$\times$ & 3.5\% & 8/8 \\
+\bottomrule
+\end{tabular}
+\caption{\textbf{Baseline speaker-style sensitivity.} Divergence in bits over a fixed 24-token reference
+continuation. Unit of analysis is the phrasing ($n=8$ per dimension) across 20 scenarios; one-sided Wilcoxon
+$p=.0039$ for every dimension, the floor at this $n$. \%\,ctrl is the style effect as a percentage of the
+positive control (0.1475 bits on this scenario set). An independent reimplementation reproduced these ratios
+to a mean absolute difference of 0.02.}
+\label{tab:baseline}
+\end{table}

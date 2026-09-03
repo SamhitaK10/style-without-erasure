@@ -1,0 +1,80 @@
+{
+  "_verdict": "PASSED. Style sensitivity removed, clinical sensitivity intact.",
+  "_headline": "Style influence fell from 5.22% to 0.43% of the medical effect \u2014 a 12.2x reduction in relative influence \u2014 while absolute medical sensitivity was unchanged (+2.7%).",
+  "_do_not_report": "The script printed 'SELECTIVITY 915567x'. That is style_drop/medical_drop with a near-zero, negative denominator. Artifact of the formula, not a finding. Use the relative-influence figures above.",
+  "_caveat": "The placebo contrast also fell 75.4%. The intervention is not style-specific: the model learned to disregard non-clinical preamble generally, while retaining full sensitivity to clinical content. Report the placebo column.",
+  "contrasts": {
+    "style": {
+      "base": 0.009424697,
+      "tuned": 0.000795753,
+      "change_pct": -91.6
+    },
+    "medical": {
+      "base": 0.180555122,
+      "tuned": 0.185405893,
+      "change_pct": 2.7
+    },
+    "placebo": {
+      "base": 0.002784493,
+      "tuned": 0.000685727,
+      "change_pct": -75.4
+    }
+  },
+  "relative_influence": {
+    "style_as_pct_of_medical_before": 5.22,
+    "style_as_pct_of_medical_after": 0.43,
+    "reduction_factor": 12.2
+  },
+  "per_dimension_style_gap": {
+    "communication_style": {
+      "before": 0.010206,
+      "after": 0.000852,
+      "change_pct": -91.7
+    },
+    "confidence": {
+      "before": 0.008206,
+      "after": 0.000464,
+      "change_pct": -94.3
+    },
+    "emotional_expressiveness": {
+      "before": 0.009154,
+      "after": 0.000703,
+      "change_pct": -92.3
+    },
+    "fluency": {
+      "before": 0.007766,
+      "after": 0.000529,
+      "change_pct": -93.2
+    },
+    "health_literacy": {
+      "before": 0.011792,
+      "after": 0.001432,
+      "change_pct": -87.9
+    },
+    "MEAN": {
+      "before": 0.00942,
+      "after": 0.0008,
+      "change_pct": -91.6
+    }
+  },
+  "quality_guard": {
+    "doctor_perplexity": [
+      12.2345,
+      12.0382
+    ],
+    "change_pct": -1.6,
+    "neutral_drift_bits": 0.002639,
+    "threshold": 0.02,
+    "passed": true
+  },
+  "evaluation": "held-out phrasings (3 of 8/dimension) x held-out scenarios (20 of 50)",
+  "config": {
+    "lr": 3e-05,
+    "epochs": 2,
+    "lora_r": 16,
+    "trainable_params": 18464768,
+    "model": "Qwen/Qwen2.5-1.5B-Instruct",
+    "n_eval_scenarios": 20
+  },
+  "reproducibility": "Two independent runs agreed to 3 decimal places on every training loss and every reported gap."
+}

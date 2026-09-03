@@ -1,0 +1,116 @@
+# ---------------------------------------------------------------- Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# ------------------------------------------------------- virtual environments
+.venv/
+venv/
+env/
+ENV/
+.conda/
+
+# ------------------------------------------------------- secrets & credentials
+# Nothing in this project currently reads a token, but training scripts
+# acquire them fast. Block them before that happens.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets.*
+credentials.json
+kaggle.json
+.huggingface/
+.netrc
+
+# ----------------------------------------------------- model weights & adapters
+# LoRA adapter weights are distributed through Hugging Face rather than GitHub.
+# Recovered or retrained local adapters stay out of Git history.
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.ckpt
+adapter_model*
+adapter_config.json
+dialense_lora*/
+*_lora/
+*_lora_hard*/
+checkpoints/
+ckpt/
+
+# ------------------------------------------------------------ framework caches
+.cache/
+hf_cache/
+transformers_cache/
+~/.cache/huggingface
+wandb/
+runs/
+lightning_logs/
+mlruns/
+
+# ---------------------------------------------------------------- generated data
+# Scenarios are fetched from DiaLense, never committed. See data/README.md.
+data/scenarios.jsonl
+data/scenarios.jsonl.meta.json
+.dialense_cache/
+DiaLense/
+
+# --------------------------------------------------------- generated PNG figures
+# The PDF figures ARE committed (they are the paper's figures). The PNGs are
+# regenerable from analysis/master.json and add ~1.7 MB.
+figures/*.png
+
+# ------------------------------------------------------------- LaTeX build junk
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.bbl
+*.blg
+paper/acl_paper.tex
+paper/acl_paper.pdf
+paper/pg-*.jpg
+analysis/_body.*
+analysis/_abs.*
+
+# ---------------------------------------------------------------- scratch & logs
+*.log
+logs/
+tmp/
+scratch/
+*.tmp
+*.bak
+*.orig
+nohup.out
+
+# --------------------------------------------------------------- notebooks
+.ipynb_checkpoints/
+*-checkpoint.ipynb
+
+# ---------------------------------------------------------------- OS & editors
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.ruff_cache/
+.mypy_cache/
+.pytest_cache/
