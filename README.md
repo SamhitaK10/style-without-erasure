@@ -69,8 +69,7 @@ detected, not as proof that the representation is unchanged.
 
 Divergence is Jensen–Shannon in bits over a fixed 24-token greedily-decoded
 reference continuation. Every number below comes from `analysis/master.json`,
-which the figures and tables are generated from; see
-committed result file behind them and which do not.
+which the figures and tables are generated from.
 
 | | Result |
 |---|---|
@@ -480,3 +479,4 @@ MTS-Dialog citation and attribution.
 The MIT licence covers this repository's own code only. It does not relicense
 Qwen, MTS-Dialog, or DiaLense. Attribution requirements and full terms:
 [`docs/THIRD_PARTY.md`](docs/THIRD_PARTY.md).
+
