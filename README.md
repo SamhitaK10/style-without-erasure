@@ -70,7 +70,6 @@ detected, not as proof that the representation is unchanged.
 Divergence is Jensen–Shannon in bits over a fixed 24-token greedily-decoded
 reference continuation. Every number below comes from `analysis/master.json`,
 which the figures and tables are generated from; see
-[`results/MISSING.md`](results/MISSING.md) for which values currently have a
 committed result file behind them and which do not.
 
 | | Result |
@@ -151,7 +150,6 @@ is stored.
 | `src/style_erasure/` | Shared library. Holds `cues.py` — the 40 cue phrasings, extracted verbatim. The experiment scripts still carry their own inline copies; finishing the extraction is item 7 in [`docs/REPRODUCIBILITY.md`](docs/REPRODUCIBILITY.md) |
 | `experiments/` | One numbered script per experiment; the number is the run order |
 | `analysis/` | `master.json` plus the figure, table and paper builders. No value is typed into plotting code — everything reads `master.json` |
-| `results/` | Committed experiment outputs (small JSON), plus [`MISSING.md`](results/MISSING.md) |
 | `figures/` | The 11 paper figures as PDF |
 | `data/` | Provenance and licence documentation. The scenario file is generated, not committed |
 | `tools/` | `fetch_scenarios.py` (pinned scenario extraction), `verify_results.py` (checks every reported number against its artifact), `publish_adapter.py` (validate and publish the LoRA adapter), `check_results.py` (which outputs exist) |
@@ -381,7 +379,6 @@ Which results have a committed artifact behind them, and which do not:
 Six experiment outputs were never written to disk, so roughly a dozen reported
 numbers — most of Table 4, and all of Tables 2, 3, 5 and 6 — currently have no
 artifact behind them. They are listed with their re-run order in
-[`results/MISSING.md`](results/MISSING.md). Re-running them is not new science;
 it is putting a file behind numbers that already exist.
 
 Every reported number is checked against its artifact by
