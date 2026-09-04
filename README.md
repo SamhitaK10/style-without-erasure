@@ -2,7 +2,7 @@
 
 **Measuring and Removing Speaker-Style Sensitivity in Language Models**
 
-Samhita Kondareddy · [paper (PDF)](paper/style_without_erasure.pdf) · (https://huggingface.co/samhitak10/qwen2.5-1.5b-style-without-erasure-lora)
+Samhita Kondareddy · [Read the paper](paper/Style_Without_Erasure_Samhita_Kondareddy.pdf) · [Model adapter](https://huggingface.co/samhitak10/qwen2.5-1.5b-style-without-erasure-lora)
 
 A language model asked the same clinical question gives a different answer
 depending on how the person asking is described, even when every fact in the
