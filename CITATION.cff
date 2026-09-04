@@ -75,3 +75,5 @@ references:
     license: Apache-2.0
     url: "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct"
     notes: "The single model used in all reported experiments. Not redistributed here."
+
+doi: 10.5281/zenodo.22305435
